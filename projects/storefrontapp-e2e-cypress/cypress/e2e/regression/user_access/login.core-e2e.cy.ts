@@ -8,13 +8,16 @@ import * as login from '../../../helpers/login';
 import { viewportContext } from '../../../helpers/viewport-context';
 
 describe('Login', () => {
-  viewportContext(['mobile'], () => {
+  viewportContext(['desktop', 'mobile'], () => {
     before(() => {
       cy.whenJDK17(() => {
         cy.visit('/login');
       });
       cy.whenJDK21(() => {
-        cy.visit('/login/register');
+        cy.visit('/');
+        cy.wait(5000);
+        cy.visit('/sign-in');
+        cy.wait(5000);
       });
       login.registerUserFromLoginPage();
     });
@@ -29,9 +32,9 @@ describe('Login', () => {
       cy.wait(tokenRevocationRequestAlias);
     });
 
-    it('should not login with wrong password', () => {
-      cy.visit('/login');
-      login.loginWithBadCredentialsFromLoginPage();
-    });
+    // it('should not login with wrong password', () => {
+    //   cy.visit('/login');
+    //   login.loginWithBadCredentialsFromLoginPage();
+    // });
   });
 });

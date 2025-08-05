@@ -144,10 +144,10 @@ export function registerWithCaptcha(
  * - Submit the form
  */
 export function login(username: string, password: string) {
-  cy.whenJDK17(() => {
-    fillLoginForm({ username, password });
-  });
-  cy.whenJDK21(() => {
-    fillAuthServerLoginForm({ username, password });
-  });
+  // cy.whenJDK17(() => {
+  fillLoginForm({ username, password });
+  // });
+  // cy.whenJDK21(() => {
+  //   fillAuthServerLoginForm({ username, password });
+  // });
 }

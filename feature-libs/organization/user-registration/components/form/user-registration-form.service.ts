@@ -16,7 +16,6 @@ import {
   Country,
   GlobalMessageService,
   GlobalMessageType,
-  OAuthFlow,
   Region,
   RoutingService,
   TranslationService,
@@ -166,12 +165,12 @@ export class UserRegistrationFormService {
    * This only happens in case of the `ResourceOwnerPasswordFlow` OAuth flow.
    */
   protected redirectToLogin(): void {
-    if (
-      this.authConfigService.getOAuthFlow() ===
-      OAuthFlow.ResourceOwnerPasswordFlow
-    ) {
-      this.routingService.go({ cxRoute: 'login' });
-    }
+    // if (
+    //   this.authConfigService.getOAuthFlow() ===
+    //   OAuthFlow.ResourceOwnerPasswordFlow
+    // ) {
+    this.routingService.go({ cxRoute: 'home' });
+    //  }
   }
 
   /**

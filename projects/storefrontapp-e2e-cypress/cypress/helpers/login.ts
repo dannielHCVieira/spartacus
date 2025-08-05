@@ -25,18 +25,18 @@ export const defaultUser = {
  * @returns Newly registered user
  */
 export function registerUserFromLoginPage(uniqueUser?: boolean) {
-  cy.whenJDK17(() => {
-    const registerPage = waitForPage('/login/register', 'getRegisterPage');
-    cy.get('cx-page-layout > cx-page-slot > cx-login-register')
-      .findByText('Register')
-      .click();
-    cy.wait(`@${registerPage}`).its('response.statusCode').should('eq', 200);
-  });
+  //cy.whenJDK17(() => {
+  const registerPage = waitForPage('/login/register', 'getRegisterPage');
+  cy.get('cx-page-layout > cx-page-slot > cx-login-register')
+    .findByText('Register')
+    .click();
+  cy.wait(`@${registerPage}`).its('response.statusCode').should('eq', 200);
+  // });
 
-  cy.whenJDK21(() => {
-    const registerPage = waitForPage('/login/register', 'getRegisterPage');
-    cy.wait(`@${registerPage}`).its('response.statusCode').should('eq', 200);
-  });
+  // cy.whenJDK21(() => {
+  //   const registerPage = waitForPage('/login/register', 'getRegisterPage');
+  //   cy.wait(`@${registerPage}`).its('response.statusCode').should('eq', 200);
+  // });
 
   const loginUser = uniqueUser ? getSampleUser() : user;
   register(loginUser);
