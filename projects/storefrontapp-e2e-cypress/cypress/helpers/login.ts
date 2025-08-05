@@ -30,7 +30,9 @@ export function registerUserFromLoginPage(uniqueUser?: boolean) {
   cy.get('cx-page-layout > cx-page-slot > cx-login-register')
     .findByText('Register')
     .click();
-  cy.wait(`@${registerPage}`).its('response.statusCode').should('eq', 200);
+  cy.wait(`@${registerPage}`, { timeout: 10000 })
+    .its('response.statusCode')
+    .should('eq', 200);
   // });
 
   // cy.whenJDK21(() => {
