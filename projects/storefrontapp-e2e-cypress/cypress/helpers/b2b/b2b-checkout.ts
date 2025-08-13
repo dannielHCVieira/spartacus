@@ -228,7 +228,9 @@ export function selectCreditCardPayment() {
 }
 
 export function selectAccountShippingAddress() {
-  selectAccountCostCenter();
+  cy.whenJDK21(() => {
+    selectAccountCostCenter();
+  });
   const getCheckoutDetails = interceptCheckoutB2BDetailsEndpoint(
     b2bDeliveryAddressStub,
     b2bDeliveryAddress.id
@@ -279,7 +281,7 @@ export function selectAccountCostCenter() {
       if (select.find(`option:contains("${costCenter}")`).length) {
         cy.get('select').select(costCenter, { force: true });
       } else {
-        cy.get('select').select(0);
+        cy.get('select').select(0, { force: true });
       }
       cy.wait('@costCenterReq').its('response.statusCode').should('eq', 200);
     });
